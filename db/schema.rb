@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2020_06_29_154052) do
     t.integer "ingredient_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_allergies_on_ingredient_id"
+    t.index ["user_id"], name: "index_allergies_on_user_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -25,9 +27,11 @@ ActiveRecord::Schema.define(version: 2020_06_29_154052) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ingredients_recipes", id: false, force: :cascade do |t|
-    t.integer "recipe_id", null: false
-    t.integer "ingredient_id", null: false
+  create_table "recipe_ingredients", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
+    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|

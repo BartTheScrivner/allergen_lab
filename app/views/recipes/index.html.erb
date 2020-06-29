@@ -1,15 +1,13 @@
-<%= form_with url: recipes_path do |f| %>
-    <%= f.label :q, "Search for:" %>
-    <%= f.text_field :q %>
-    <%= f.button "Search"  %>
-  <% end %>
-
 <h1> All Recipes </h1>
+
+<%= form_tag recipes_path, method: "get" %>
+<%= label_tag "Sort Ascending" %>
+<%= radio_button_tag :sort, 'ascend' %>
+<%= submit_tag "Sort" %>
+
 <ul>
 <% @recipes.each do |recipe| %>
-    <li><%= recipe.name %></li>
+    <li><%= "#{recipe.name} -- #{recipe.ingredients.count}"%></li>
     
 <% end %>
 </ul>
-
-<

@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Recipe.destroy_all
+Ingredient.destroy_all
+RecipeIngredient.destroy_all
+Allergy.destroy_all
+
 allergy_arr = %w[shellfish gluten tree-nuts egg soy none]
 
 10.times do 
@@ -21,11 +27,11 @@ end
 end
 
 # 20.times do 
-#   IngredientsRecipe.create(recipe_id: Recipe.all.sample.id, ingredient_id: Ingredient.all.sample.id)
+#   RecipeIngredient.create(recipe_id: Recipe.all.sample.id, ingredient_id: Ingredient.all.sample.id)
 # end 
 
 Recipe.all.each do |recipe|
-  5.times {IngredientsRecipe.create(recipe_id: recipe.id, ingredient_id: Ingredient.all.sample.id)}
+  rand(2..7).times {RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: Ingredient.all.sample.id)}
 end
 
 10.times do
